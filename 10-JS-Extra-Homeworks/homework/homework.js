@@ -10,6 +10,8 @@ function deObjetoAmatriz(objeto){
       C: 3
     }) ➞ [["D", 1], ["B", 2], ["C", 3]]*/
   //Escribe tu código aquí
+  var array = Object.entries(objeto);
+  return array;
 }
 
 
@@ -18,6 +20,16 @@ function numberOfCharacters(string) {
   //en formato par clave-valor.
   //Ej: Recibe ---> "adsjfdsfsfjsdjfhacabcsbajda" || Devuelve ---> { a: 5, b: 2, c: 2, d: 4, f: 4, h:1, j: 4, s: 5 } 
   //Escribe tu código aquí
+  var obj = {};
+  for(var i=0;i<string.length;i++){
+    if(obj[string[i]]){
+      obj[string[i]]=obj[string[i]]+1;
+    }
+    else{
+      obj[string[i]]=1;
+    }    
+  }
+  return obj;
 }
 
 
@@ -26,6 +38,17 @@ function capToFront(s) {
   //al principio de la palabra.
   //Ejemplo: soyHENRY -> HENRYsoy
   //Escribe tu código aquí
+  var arr = Array.from(s);
+  var arrAux = [];
+  for(var i=0;i<arr.length;i++){
+    if(arr[i]===arr[i].toUpperCase()){
+      arrAux.push(arr[i]);
+      arr[i]=null;
+    }
+  }
+  arr.unshift(arrAux.join(''));
+  return arr.join("");
+
 }
 
 
@@ -35,6 +58,37 @@ function asAmirror(str) {
   //pero con cada una de sus palabras invertidas, como si fuera un espejo.
   //Ej: Recibe ---> "The Henry Challenge is close!" || Devuelve ---> "ehT yrneH egnellahC si !esolc"
   //Escribe tu código aquí
+  var arr = str.split('');
+  var arrAux = [];
+  var arrAux2 = [];
+  var arrFinal = [];
+  var aux = 0;
+  for(var i=0;i<=arr.length;i++){    
+    if((arr[i]===' ' && arrAux.length>1) || i===arr.length){
+      aux=arrAux.length-1;
+      for(var j=0;j<arrAux.length;j++){
+        arrAux2[aux]=arrAux[j];
+        aux--;
+      }
+      arrFinal.push(arrAux2.join(''));
+      if(i!==arr.length){
+        arrFinal[i]=' ';
+      }  
+      arrAux=[];
+      arrAux2=[];
+      continue;
+    }
+    else if((arr[i]===' ' && arrAux.length===1) || i===arr.length){
+      arrFinal.push(arrAux.join(''));
+      if(i!==arr.length){
+        arrFinal[i]=' ';
+      }
+      arrAux=[];
+      continue;
+    }
+    arrAux.push(arr[i]);
+  }
+  return arrFinal.join('');
 } 
 
 
