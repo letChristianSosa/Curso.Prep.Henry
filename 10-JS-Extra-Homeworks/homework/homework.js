@@ -97,6 +97,16 @@ function capicua(numero){
   //La misma debe retornar: "Es capicua" si el número se número que se lee igual de 
   //izquierda a derecha que de derecha a izquierda. Caso contrario retorna "No es capicua"
   //Escribe tu código aquí
+  var numeroArr = Array.from(numero);
+  var aux=numero.length-1;
+  for(var i=0, aux;i<numeroArr.length;i++,aux--);
+    if(i===aux){
+      return "Es capicua";
+    }
+    if(numeroArr[i]===numeroArr[aux]){
+      continue;
+    }else
+      return "No es capicua";    
 }
 
 
