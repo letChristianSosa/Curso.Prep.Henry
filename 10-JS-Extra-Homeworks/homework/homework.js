@@ -97,16 +97,14 @@ function capicua(numero){
   //La misma debe retornar: "Es capicua" si el número se número que se lee igual de 
   //izquierda a derecha que de derecha a izquierda. Caso contrario retorna "No es capicua"
   //Escribe tu código aquí
-  var numeroArr = Array.from(numero);
-  var aux=numero.length-1;
-  for(var i=0, aux;i<numeroArr.length;i++,aux--);
-    if(i===aux){
-      return "Es capicua";
-    }
+  var numeroArr = Array.from(numero.toString());
+  for(var i=0, aux=numeroArr.length-1;i<numeroArr.length && i!==aux;i++,aux--){
     if(numeroArr[i]===numeroArr[aux]){
       continue;
     }else
-      return "No es capicua";    
+      return "No es capicua";  
+  }
+  return 'Es capicua'  
 }
 
 
@@ -114,6 +112,10 @@ function deleteAbc(cadena){
   //Define una función que elimine las letras "a", "b" y "c" de la cadena dada 
   //y devuelva la versión modificada o la misma cadena, en caso de contener dichas letras.
   //Escribe tu código aquí
+  var nuevaCadena = ((cadena.replace('a','',"gi")).replace('b','','gi')).replace('c','','gi');
+  return nuevaCadena;
+
+  //https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/String/replace
 }
 
 
@@ -121,6 +123,25 @@ function sortArray(arr) {
   //La función recibe una matriz de strings. Ordena la matriz en orden creciente de longitudes de cadena
   //Ej: Recibe ---> ["You", "are", "beautiful", "looking"] || Devuelve ---> [“You", "are", "looking", "beautiful"]
   //Escribe tu código aquí
+  var aux = '';
+  var cambios = false;
+  
+  do{
+    for(var i=0;i<arr.length;i++){
+      if(arr[i+1]!==undefined){
+        if(arr[i].length>arr[i+1].length){
+          aux=arr[i];
+          arr[i]=arr[i+1];
+          arr[i+1]=aux;
+          cambios=true;
+        }
+        else{
+          cambios=false;
+        }
+      }
+    }    
+  }while(cambios===true);
+  return arr;  
 }
 
 
@@ -129,7 +150,14 @@ function buscoInterseccion(arreglo1, arreglo2){
   //retornar un nuevo array con la intersección de ambos elementos. (Ej: [4,2,3] unión [1,3,4] = [3,4].
   //Si no tienen elementos en común, retornar un arreglo vacío.
   //Aclaración: los arreglos no necesariamente tienen la misma longitud
-  //Escribe tu código aquí  
+  //Escribe tu código aquí
+  var nuevoArray=[]; 
+  for(var i=0;i<arreglo1.length;i++){
+    if(arreglo2.includes(arreglo1[i])){
+      nuevoArray.push(arreglo1[i]);
+    }
+  }
+  return nuevoArray;
 }
 
 
