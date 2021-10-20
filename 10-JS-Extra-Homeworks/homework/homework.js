@@ -58,37 +58,17 @@ function asAmirror(str) {
   //pero con cada una de sus palabras invertidas, como si fuera un espejo.
   //Ej: Recibe ---> "The Henry Challenge is close!" || Devuelve ---> "ehT yrneH egnellahC si !esolc"
   //Escribe tu código aquí
-  var arr = str.split('');
-  var arrAux = [];
-  var arrAux2 = [];
-  var arrFinal = [];
-  var aux = 0;
-  for(var i=0;i<=arr.length;i++){    
-    if((arr[i]===' ' && arrAux.length>1) || i===arr.length){
-      aux=arrAux.length-1;
-      for(var j=0;j<arrAux.length;j++){
-        arrAux2[aux]=arrAux[j];
-        aux--;
-      }
-      arrFinal.push(arrAux2.join(''));
-      if(i!==arr.length){
-        arrFinal[i]=' ';
-      }  
-      arrAux=[];
-      arrAux2=[];
-      continue;
+  var strFinal = '';
+  var array = str.split(' ');
+  for(var i=0;i<array.length;i++){
+    for(var j=array[i].length-1;j>=0;j--){
+        strFinal+=array[i][j];
     }
-    else if((arr[i]===' ' && arrAux.length===1) || i===arr.length){
-      arrFinal.push(arrAux.join(''));
-      if(i!==arr.length){
-        arrFinal[i]=' ';
-      }
-      arrAux=[];
-      continue;
-    }
-    arrAux.push(arr[i]);
+  if(array[i+1]!==undefined)
+    strFinal+=" ";
   }
-  return arrFinal.join('');
+  
+  return strFinal;
 } 
 
 
